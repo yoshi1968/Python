@@ -1,11 +1,20 @@
-A,B,C,X = [int(input()) for i in range(4)]
-X //= 50
-ans = 0
-for i in range(A + 1):
-    if 10*i > X: break
-    rem = X - 10*i
-    for j in range(B + 1):
-        if 2*j > rem: break
-        if rem - 2*j <= C:
-            ans += 1
-print(ans)
+def fib1(n):
+  if n == 0:
+    return 0
+  if n == 1:
+    return 1
+  return fib1(n - 1) + fib1(n - 2)
+
+def fib2(n):
+  n0, n1 = 0, 1
+  for cnt in range(n):
+    n0, n1 = n1, n0 + n1
+  return n1
+
+print('call fib1')
+for x in range(10):
+  print(f'{fib1(x)}, ', end='')
+print()
+print('call fib2')
+for x in range(10):
+  print(f'{fib2(x)}, ', end='')
