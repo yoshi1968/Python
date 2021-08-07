@@ -1,0 +1,2 @@
+planet == "Pluto"
+len(planet)
