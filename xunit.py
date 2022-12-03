@@ -56,11 +56,12 @@ class TestCaseTest(TestCase):
 		result.testStarted()
 		result.testFailed()
 		assert("1 run, 1 failed" == result.summary())
-	def testSuite(selt):
+	def testSuite(self):
 		suite = TestSuite()
 		suite.add(WasRun("testMethod"))
 		suite.add(WasRun("testBrokenMethod"))
-		result = suite.run()
+		result = TestResult()
+		suite.run(result)
 		assert("2 run, 1 failed" == result.summary())
 
 class TestSuite:
@@ -68,6 +69,11 @@ class TestSuite:
 		self.tests = []
 	def add(self, test):
 		self.tests.append(test)
+	def run(self):
+		result = TestResult()
+		for test in self.tests:
+			test.run(result)
+		return result
 
 print(TestCaseTest("testTemplateMethod").run().summary())
 print(TestCaseTest("testResult").run().summary())
