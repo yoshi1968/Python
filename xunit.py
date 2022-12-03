@@ -1,8 +1,13 @@
-class WasRun:
+class TestCase:
+	pass
+
+class WasRun(TestCase):
 	def __init__(self, name):
 		self.wasRun = None
+		self.name = name
 	def run(self):
-		self.testMethod()
+		method = getattr(self, self.name)
+		method()
 	def testMethod(self):
 		self.wasRun = 1
 
